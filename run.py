@@ -61,20 +61,28 @@ def search_picture():
     url_for_image = request.values.get('MediaUrl0')
     from_number = request.values.get('From')
     request_state = request.values.get('FromState')
+    request_city = request.values.get('FromCity')
     request_zip = request.values.get('FromZip')
-    request_location = request_state + " " + request_zip
+    request_location = request_state + " " + request_city + " " + request_zip
 
     result = clarifai_api.tag_image_urls(url_for_image)
 
     tags_for_picture = result['results'][0]['result']['tag']['classes']
 
-    message = "Your first three tags are: "
+    tags_for_search = "restaurant "
 
-    for i in range(3): message += (tags_for_picture[i] + ", ")
+    for i in range(3): tags_for_search += (tags_for_picture[i] + ", ")
 
-    yelped_businesses = request_yelp("http://api.yelp.com/v2/search?location=Boston&term=food")
+    yelp_params = {
+        'term': tags_for_search,
+        'location': request_location
+    }
+
+    yelped_businesses = request_yelp("http://api.yelp.com/v2/search", yelp_params)
 
     business_address = yelped_businesses['businesses'][0]['location']['address'][0]
+
+    business_address += "\n" + tags_for_search
 
     messagePicture = twilio_api.messages.create(to=from_number, from_=credentials.my_twilio_number, body=business_address)
 

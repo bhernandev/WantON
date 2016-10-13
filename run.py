@@ -35,10 +35,11 @@ def request_yelp(url, url_params=None):
     consumer_secret = credentials.my_yelp_consumer_secret
     token = credentials.my_yelp_token
     token_secret = credentials.my_yelp_token_secret
+
     url_params = url_params or {}
+
     consumer = oauth2.Consumer(consumer_key, consumer_secret)
     oauth_request = oauth2.Request(method="GET", url = url, parameters=url_params)
-
     oauth_request.update(
         {
             'oauth_nonce': oauth2.generate_nonce(),
@@ -63,10 +64,12 @@ def search_picture():
     request_state = request.values.get('FromState')
     request_city = request.values.get('FromCity')
     request_zip = request.values.get('FromZip')
-    request_location = request_state + " " + request_city + " " + request_zip
+    request_location = request_city + ", " + request_state + ", " + request_zip
+
+    message_init_string = "The following restaurants near " + request_location + " were found based on your image! :"
+    message_init = twilio.api.messages.create(to=from_number, from=credentials.my_twilio_number, body=message_init_string)
 
     result = clarifai_api.tag_image_urls(url_for_image)
-
     tags_for_picture = result['results'][0]['result']['tag']['classes']
 
     tags_for_search = "restaurant "
@@ -77,14 +80,15 @@ def search_picture():
         'term': tags_for_search,
         'location': request_location
     }
-
     yelped_businesses = request_yelp("http://api.yelp.com/v2/search", yelp_params)
+    business_address_1 = yelped_businesses['businesses'][0]['location']['address'][0] + "\n" + tags_for_search
+    business_address_2 = yelped_businesses['businesses'][0]['location']['address'][1] + "\n" + tags_for_search
+    business_address_3 = yelped_businesses['businesses'][0]['location']['address'][2] + "\n" + tags_for_search
 
-    business_address = yelped_businesses['businesses'][0]['location']['address'][0]
+    message_picture_1 = twilio_api.messages.create(to=from_number, from_=credentials.my_twilio_number, body=business_address_1)
+    message_picture_2 = twilio_api.messages.create(to=from_number, from_=credentials.my_twilio_number, body=business_address_2)
+    message_picture_3 = twilio_api.messages.create(to=from_number, from_=credentials.my_twilio_number, body=business_address_3)
 
-    business_address += "\n" + tags_for_search
-
-    messagePicture = twilio_api.messages.create(to=from_number, from_=credentials.my_twilio_number, body=business_address)
 
     return ""
 

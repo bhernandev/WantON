@@ -67,7 +67,7 @@ def search_picture():
     request_location = request_city + ", " + request_state + ", " + request_zip
 
     message_init_string = "The following restaurants near " + request_location + " were found based on your image! :"
-    message_init = twilio.api.messages.create(to=from_number, from=credentials.my_twilio_number, body=message_init_string)
+    message_init = twilio_api.messages.create(to=from_number, from_=credentials.my_twilio_number, body=message_init_string)
 
     result = clarifai_api.tag_image_urls(url_for_image)
     tags_for_picture = result['results'][0]['result']['tag']['classes']
@@ -82,8 +82,8 @@ def search_picture():
     }
     yelped_businesses = request_yelp("http://api.yelp.com/v2/search", yelp_params)
     business_address_1 = yelped_businesses['businesses'][0]['location']['address'][0] + "\n" + tags_for_search
-    business_address_2 = yelped_businesses['businesses'][0]['location']['address'][1] + "\n" + tags_for_search
-    business_address_3 = yelped_businesses['businesses'][0]['location']['address'][2] + "\n" + tags_for_search
+    business_address_2 = yelped_businesses['businesses'][1]['location']['address'][0] + "\n" + tags_for_search
+    business_address_3 = yelped_businesses['businesses'][2]['location']['address'][0] + "\n" + tags_for_search
 
     message_picture_1 = twilio_api.messages.create(to=from_number, from_=credentials.my_twilio_number, body=business_address_1)
     message_picture_2 = twilio_api.messages.create(to=from_number, from_=credentials.my_twilio_number, body=business_address_2)

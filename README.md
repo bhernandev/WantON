@@ -9,14 +9,10 @@ Clone this repository with the following command in terminal
 ```Shell
 git clone https://github.com/bhernandez-cs/WantON.git
 ```
-<br />
-
 Within terminal and inside the project folder, install the necessary libraries and APIs that are required by WantON. A virtual environment is a good idea!
 ```Shell
 pip install -r requirements.txt
 ```
-<br />
-
 Create a new file titled 'credentials.py' that will host your personal credentials for the Twilio API and the Clarifai API. Inside of your 'credentials.py' file should be the following:
 ```Python
 #You can find/get Twilio credntials at https://www.twilio.com/console

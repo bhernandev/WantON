@@ -1,6 +1,6 @@
 # WantON
  
-This is a Flask server that responds to image text-messages with three different addresses of restaurants nearby that likely have the food that is depicted in the image. Powered by Twilio, Clarifai, and Yelp!
+WantON is a Flask server that responds to image text-messages with three different addresses of restaurants nearby that likely have the food that is depicted in the image. Powered by Twilio, Clarifai, and Yelp!
 
 ![WantON_Demo](http://i.imgur.com/kVMScgUl.jpg?1)
 
@@ -35,8 +35,27 @@ my_yelp_token_secret = "YOUR YELP TOKEN SECRET"
 ```
 
 ## Usage
+Start the Flask WantON server with the following command inside of the project folder in terminal.
+```Shell
+python WantON.py
+```
+In order to let Twilio find your server, you can use any of the following services.
+<ul>
+<li><a href="https://ngrok.com/">ngrok</a></li>
+<li><a href="http://devcenter.heroku.com/articles/python">Heroku</a></li>
+<li><a href="http://flask.pocoo.org/snippets/65/">Webfaction</a></li>
+<li><a href="http://flask.pocoo.org/docs/deploying/">Apache,FastCGI, or uWSGI</a></li>
+<li><a href="http://flask.pocoo.org/snippets/48/">Dotcloud</a></li>
+</ul>
+
+Once you have an <b>online</b> server endpoint, visit the settings for your Twilio phone number at https://www.twilio.com/console and enter your endpoint: 
+
 ![Setup_1](http://i.imgur.com/zxZOIzY.png)
 
+Save these settings, text your images, and watch the magic happen!
 
 ## Drawbacks
-To be added
+ <ul>
+ <li>Location for restaurant search is based off of the general area that a given phone number belongs to. Hard to get location data from a single text message.</li>
+ <li>Only the first three Clarifai tags for a given image are used, which narrows the Yelp search well. However it may be less accurate as a result. </li>
+</ul>

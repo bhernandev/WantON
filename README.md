@@ -2,7 +2,8 @@
  
 This is a Flask server that responds to image text-messages with three different addresses of restaurants nearby that likely have the food that is depicted in the image. Powered by Twilio, Clarifai, and Yelp!
 
-![WantON_Demo](http://i.imgur.com/kVMScgU.jpg?1)
+![WantON_Demo](http://i.imgur.com/kVMScgUl.jpg?1)
+
 
 ## Setup
 #####\*WantON was implemented and tested in Python 3.5 only. Other versions of Python may not work.\*
@@ -34,7 +35,8 @@ my_yelp_token_secret = "YOUR YELP TOKEN SECRET"
 ```
 
 ## Usage
-To be added
+![Setup_1](http://i.imgur.com/zxZOIzY.png)
+
 
 ## Drawbacks
 To be added

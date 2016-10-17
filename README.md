@@ -8,7 +8,7 @@ WantON is a Flask server that responds to image text-messages with three differe
 ## Setup
 #####\*WantON was implemented and tested in Python 3.5 only. Other versions of Python may not work.\*
 <br />
-Clone this repository with the following command in terminal
+Clone this repository with the following command in terminal.
 ```Shell
 git clone https://github.com/bhernandez-cs/WantON.git
 ```

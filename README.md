@@ -52,7 +52,7 @@ Once you have an <b>online</b> server endpoint, visit the settings for your Twil
 
 ![Setup_1](http://i.imgur.com/zxZOIzY.png)
 
-Save these settings, text your images, and watch the magic happen!
+Save these settings and turn your want ON!
 
 ## Drawbacks
  <ul>

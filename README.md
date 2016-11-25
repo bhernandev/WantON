@@ -57,5 +57,5 @@ Save these settings and turn your want ON!
 ## Drawbacks
  <ul>
  <li>Location for restaurant search is based off of the general area that a given phone number belongs to. Hard to get location data from a single text message.</li>
- <li>Only the first three Clarifai tags for a given image are used, which narrows the Yelp search well. However it may be less accurate as a result. </li>
+ <li>Only the first three Clarifai tags for a given image are used, which narrows the Yelp search well. However it may be less accurate. </li>
 </ul>

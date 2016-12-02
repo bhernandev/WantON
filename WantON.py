@@ -75,7 +75,7 @@ def search_picture():
     tags_for_picture = result['results'][0]['result']['tag']['classes']
 
     search_text = "restaurant " #Adds 'restaurant' to the search, so that we dont get back anything other than restaurants!
-    for i in range(3): search_text += (tags_for_picture[i] + ", ") #Adds the first three tags from the Clarifai tagging to the search
+    for i in range(5): search_text += (tags_for_picture[i] + ", ") #Adds the first three tags from the Clarifai tagging to the search
 
     #Initialization of parameters for searching with the Yelp API
     yelp_params = {

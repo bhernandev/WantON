@@ -1,6 +1,6 @@
 # WantON
  
-WantON is a Flask server that responds to image text-messages with three different addresses of restaurants nearby that likely have the food that is depicted in the image. Powered by Twilio, Clarifai, and Yelp!
+WantON is a Flask server that responds to image text-messages with the addresses of three different restaurants nearby that likely have the food that is depicted in the image. Powered by Twilio, Clarifai, and Yelp!
 
 ![WantON_Demo](http://i.imgur.com/kVMScgUl.jpg?1)
 
